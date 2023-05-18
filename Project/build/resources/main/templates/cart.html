@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: orange, url(img/p.jpg);
+    }
+    .shadowtext {
+      text-shadow: 3px 3px 3px black, 0 0 1em red; /* Параметры тени */
+      color: white; /* Белый цвет текста */
+      font-size: 2em; /* Размер надписи */
+    }
+    h1 {
+      color: white;
+    }
+
+    h3 {
+      color: #555;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .zxc1 a:hover,
+    h2:hover {
+      color: red;
+    }
+
+    .zxc1 {
+      position: fixed;
+      top: 0;
+      z-index: 1;
+    }
+
+    .zxc1 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .HIHI {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .TOVAR {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px white;
+    }
+
+    .TOVAR:hover {
+      background-color: #eee;
+    }
+
+    @media screen and (max-width: 768px) {
+      .zxc1 {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .trl {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .qwe {
+        width: 150px;
+        height: 50px;
+        font-size: 14px;
+      }
+
+      .TEXT {
+        width: 100%;
+      }
+
+      .HIHI {
+        width: 90%;
+      }
+
+      .TOVAR {
+        width: 80%;
+      }
+    }
+    @media screen and (min-width: 1300px) {
+      .HIHI {
+        width: 980px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="ECO">
+    <p class ="shadowtext"><font size="10" color="red" face="algerian">Пиццерия Бомбино</font></p>
+  </div>
+  <div class="zxc1">
+    <div class="trl">
+      <div class="qwe"><a href="http://localhost:8080/index">
+          <h2>Меню</h2>
+        </a></div>
+      <div class="qwe"><a>
+          <h2>Заказ</h2>
+        </a></div>
+    </div>
+  </div>
+  <div class="INFO">
+    <div class="TEXT">
+      <h3>Пицца которую вы выбрали:</h3>
+    </div>
+  </div>
+
+  <div class="zxc2">
+    <div class="HIHI">
+      <div class="KOR">
+        <table>
+          <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Сумма</th>
+            <th></th>
+          </tr>
+          <tr th:each="item : ${cartItems}">
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.product.price}"></td>
+            <td th:text="${item.product.price} * ${item.quantity}"></td>
+            <td>
+              <form method="POST" th:action="@{/cart/delete}">
+                <input type="hidden" th:name="id" th:value="${item.id}" />
+                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+        <p>Итого: <span th:text="${T(com.kyrs.Table.CartItem).getTotal(cartItems)}"></span></p>
+          <div class="KOR">
+            <form method="POST" th:action="@{/order}">
+              <label>Имя</label>
+              <input type="text" name="name">
+              <label>Номер телефона</label>
+              <input type="text" name="phone">
+              <label>Адрес</label>
+              <input type="text" name="address">
+              <button type="submit">Оформить заказ</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
