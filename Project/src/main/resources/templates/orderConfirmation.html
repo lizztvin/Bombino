@@ -8,6 +8,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      background: orange, url(img/p.jpg);
     }
     .shadowtext {
       text-shadow: 3px 3px 3px black, 0 0 1em red; /* Параметры тени */
@@ -30,7 +31,7 @@
 
     .zxc1 a:hover,
     h2:hover {
-      color: white;
+      color: red;
     }
 
     .zxc1 {
@@ -69,7 +70,7 @@
       background-color: #eee;
     }
 
-    @media screen and (max-width: 768px) {
+      @media screen and (max-width: 768px) {
       .zxc1 {
         flex-direction: column;
         align-items: center;
@@ -122,9 +123,11 @@
     </div>
 <div class="HIHI">
     <div class="KOR">
-        <p>Спасибо за ваш заказ, пицца будет доставлена через 30 минут  <span th:text="${order.name}"></span>!</p>
-        <p>Номер телефона: 8 800 888 88 88 <span th:text="${order.phone}"></span></p>
-        <p>Адрес: г. Москва <span th:text="${order.address}"></span></p>
+        <p>Ваш заказ принят, <span th:text="${order.name}"></span>, повора уже начали его готовить</p>
+        <p>Номер телефона: <span th:text="${order.phone}"></span></p>
+        <p>Адрес доставки: <span th:text="${order.address}"></span></p>
+        <p>Курьер будет в течении часа.</p>
+        <p><br><br><br><br><br><br><strong>Связь с поддержкой: 8 915 389 66 39</strong></p>
     </div>
 </div>
 </body>

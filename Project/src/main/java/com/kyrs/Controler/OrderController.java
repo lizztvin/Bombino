@@ -27,28 +27,12 @@ public class OrderController {
         orderRepository.save(order);
         return "redirect:/order/success";
     }
+
     @GetMapping("/success")
     public ModelAndView showOrderConfirmation() {
         Order lastOrder = orderRepository.findTopByOrderByIdDesc();
         ModelAndView modelAndView = new ModelAndView("orderConfirmation");
-        modelAndView.addObject("orders", lastOrder);
+        modelAndView.addObject("order", lastOrder);
         return modelAndView;
     }
-//    @GetMapping("/success")
-//    public ModelAndView showOrderConfirmation() {
-//        List<Order> orders = orderRepository.findAll();
-//        ModelAndView modelAndView = new ModelAndView("orderConfirmation");
-//        modelAndView.addObject("orders", orders);
-//        return modelAndView;
-//    }
-//    @GetMapping("/success")
-//    public ModelAndView showOrderConfirmation() {
-//        List<Order> orders = orderRepository.findAll();
-//        for(Order order : orders) {
-//            System.out.println(order.toString());
-//        }
-//        ModelAndView modelAndView = new ModelAndView("orderConfirmation");
-//        modelAndView.addObject("orders", orders);
-//        return modelAndView;
-//    }
 }
